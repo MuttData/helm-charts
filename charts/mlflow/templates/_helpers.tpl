@@ -94,6 +94,14 @@ Artifact Store
 {{- end }}
 {{- end }}
 
+{{- define "mlflow.artifactStore.externalMinio.endpoint" -}}
+{{- if .Values.externalArtifactStore.externalMinio.enabled }}
+{{- printf "http://%s:%g" .Values.externalArtifactStore.externalMinio.host .Values.externalArtifactStore.externalMinio.port }}
+{{- else }}
+{{- printf "" }}
+{{- end }}
+{{- end }}
+
 {{/*
 Database
 */}}

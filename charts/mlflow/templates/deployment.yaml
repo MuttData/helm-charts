@@ -71,6 +71,9 @@ spec:
             {{- if .Values.minio.enabled }}
             - name: MLFLOW_S3_ENDPOINT_URL
               value: {{ include "mlflow.artifactStore.storageHost" . | quote }}
+            {{- else if .Values.externalArtifactStore.externalMinio.enabled }}
+            - name: MLFLOW_S3_ENDPOINT_URL
+              value: {{ include "mlflow.artifactStore.externalMinio.endpoint" . | quote }}
             {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
